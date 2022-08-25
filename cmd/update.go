@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/go-git/go-git/v5"
 	"github.com/spf13/cobra"
 	"github.com/vladovidiu/tldr/pkg/config"
@@ -28,7 +31,16 @@ func updateTldrPages() error {
 		return err
 	}
 
-	return worktree.Pull(&git.PullOptions{
+	err = worktree.Pull(&git.PullOptions{
 		RemoteName: "origin",
+		Progress:   os.Stdout,
 	})
+
+	if err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("Successfully updated into: %s\n", sourceDir)
+	}
+
+	return err
 }

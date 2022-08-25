@@ -33,7 +33,7 @@ func cloneTldrPages() error {
 	})
 
 	if err == nil {
-		fmt.Printf("Successfully clone tldr pages in: %s\n", sourceDir)
+		fmt.Printf("Successfully cloned tldr pages in: %s\n", sourceDir)
 	}
 
 	return err
